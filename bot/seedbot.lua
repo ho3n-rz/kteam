@@ -140,9 +140,6 @@ local function is_plugin_disabled_on_chat(plugin_name, receiver)
     -- Checks if plugin is disabled on this chat
     for disabled_plugin,disabled in pairs(disabled_chats[receiver]) do
       if disabled_plugin == plugin_name and disabled then
-        local warning = 'Plugin '..disabled_plugin..' is disabled on this chat'
-        print(warning)
-        send_msg(receiver, warning, ok_cb, false)
         return true
       end
     end
@@ -228,45 +225,30 @@ function create_config( )
     "invite",
     "all",
     "leave_ban",
+    "plugin_manager",
+    "feedback",
+    "filtering",
+    "plugins",
 	"supergroup",
 	"whitelist",
 	"msg_checks"
     },
-    sudo_users = {110626080,103649648,111020322,0,tonumber(our_id)},--Sudo users
+    sudo_users = {122774036},--Sudo users
     moderation = {data = 'data/moderation.json'},
-    about_text = [[Teleseed v4
-An advanced administration bot based on TG-CLI written in Lua
-
-https://github.com/SEEDTEAM/TeleSeed
-
-Admins
-@iwals [Founder]
-@imandaneshi [Developer]
-@POTUS [Developer]
-@seyedan25 [Manager]
-@aRandomStranger [Admin]
-
-Special thanks to
-awkward_potato
-Siyanew
-topkecleon
-Vamptacus
-
-Our channels
-@teleseedch [English]
-@iranseed [persian]
-
-Our website 
-http://teleseed.seedteam.org/
+    about_text = [[Sbss Api Anti Spam v1
+    Based on SEEDTEAM/TeleSeed
+    
+    Owner :
+    @Amir_h
+    Privator :
+    @Amir_hbot
+    Channel :
+    @Sbss_Team
+    
+    Special Thanks to #MrHalix
 ]],
     help_text_realm = [[
 Realm Commands:
-
-!creategroup [Name]
-Create a group
-
-!createrealm [Name]
-Create a realm
 
 !setname [Name]
 Set realm name
@@ -447,8 +429,17 @@ Save <text> as [value]
 !get [value]
 Returns text of [value]
 
-!clean [modlist|rules|about]
-Will clear [modlist|rules|about] and set it to nil
+!filter + <word>
+Filters <word>
+
+!filter - <word>
+Unfilters <word
+
+!filterlist
+Returns Filtered Words
+
+!clean [modlist|rules|about|filterlist]
+Will clear [modlist|rules|about|filterlist] and set it to nil
 
 !res [username]
 returns user id
